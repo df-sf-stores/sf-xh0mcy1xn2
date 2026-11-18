@@ -133,31 +133,52 @@ export const Layout = ({ children }: { children: ReactNode }) => {
               <h2 className={styles.heading}>{t('common.footer.touch')}</h2>
               {address ? (
                 <div className={styles.contact}>
-                  <p className={styles.contactLabel}>{t('common.footer.address')}</p>
-                  <p className={styles.contactValue}>{address}</p>
+                  <svg className={styles.contactIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z" />
+                    <circle cx="12" cy="10" r="2.3" />
+                  </svg>
+                  <div className={styles.contactText}>
+                    <p className={styles.contactLabel}>{t('common.footer.address')}</p>
+                    <p className={styles.contactValue}>{address}</p>
+                  </div>
                 </div>
               ) : null}
               {store.contactEmail ? (
                 <div className={styles.contact}>
-                  <p className={styles.contactLabel}>{t('common.footer.email')}</p>
-                  <p className={styles.contactValue}>{store.contactEmail}</p>
+                  <svg className={styles.contactIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="3.5" y="5.5" width="17" height="13" rx="1" />
+                    <path d="M4 6.5l8 6 8-6" />
+                  </svg>
+                  <div className={styles.contactText}>
+                    <p className={styles.contactLabel}>{t('common.footer.email')}</p>
+                    {/* Core's Link opens only store paths, http(s) and tel: addresses, so the email is shown to copy, not as a mailto: link. */}
+                    <p className={styles.contactValue}>{store.contactEmail}</p>
+                  </div>
                 </div>
               ) : null}
               {store.contactPhone ? (
                 <div className={styles.contact}>
-                  <p className={styles.contactLabel}>{t('common.footer.phone')}</p>
-                  <p className={styles.contactValue}>{store.contactPhone}</p>
+                  <svg className={styles.contactIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6.6 3.5h3l1.5 4-2 1.3a10 10 0 005.1 5.1l1.3-2 4 1.5v3a1.6 1.6 0 01-1.7 1.6A15.5 15.5 0 015 5.2 1.6 1.6 0 016.6 3.5z" />
+                  </svg>
+                  <div className={styles.contactText}>
+                    <p className={styles.contactLabel}>{t('common.footer.phone')}</p>
+                    <p className={styles.contactValue}>{store.contactPhone}</p>
+                  </div>
                 </div>
               ) : null}
               {whatsapp ? (
                 <div className={styles.contact}>
-                  <p className={styles.contactLabel}>{t('common.footer.whatsappLabel')}</p>
-                  <Link href={whatsapp.url} className={styles.contactLink}>
-                    <svg className={styles.contactIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M12 3a9 9 0 00-7.8 13.5L3 21l4.6-1.2A9 9 0 1012 3z" />
-                    </svg>
-                    {whatsappNumber ? t('common.footer.whatsappNumber', { number: whatsappNumber }) : t('common.footer.whatsapp')}
-                  </Link>
+                  <svg className={styles.contactIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 3.5a8.5 8.5 0 00-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1012 3.5z" />
+                    <path d="M9 8.5c0 3.6 2.9 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 01-2.8-2.8l.9-1-1-2z" />
+                  </svg>
+                  <div className={styles.contactText}>
+                    <p className={styles.contactLabel}>{t('common.footer.whatsappLabel')}</p>
+                    <Link href={whatsapp.url} className={styles.contactLink}>
+                      {whatsappNumber ? t('common.footer.whatsappNumber', { number: whatsappNumber }) : t('common.footer.whatsapp')}
+                    </Link>
+                  </div>
                 </div>
               ) : null}
             </div>

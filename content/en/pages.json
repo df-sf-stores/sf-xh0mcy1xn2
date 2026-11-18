@@ -45,7 +45,18 @@
     "title": "Our policies",
     "lead": "The terms that apply when you shop with us.",
     "legal": "Legal notice",
-    "ask": "Questions about this policy? Get in touch and we will answer."
+    "ask": "Questions about this policy? Get in touch and we will answer.",
+    "eyebrow": "Policies",
+    "home": "Home",
+    "crumbs": "Breadcrumb",
+    "updated": "Last updated {date}",
+    "contents": "On this page",
+    "pendingTitle": "This policy is being finalised",
+    "contact": "Contact us",
+    "others": "Other policies",
+    "tel": "tel:+{number}",
+    "show": "Show",
+    "hide": "Hide"
   },
   "notFound": {
     "title": "We can’t find that page",
