@@ -19,7 +19,8 @@ export const Menu = ({ label, children }: { label: string; children: ReactNode }
         </svg>
         <span className={styles.label}>{label}</span>
       </button>
-      <div id="site-menu" className={open ? styles.open : styles.panel}>
+      {/* A press on a link in the menu closes it; a group that only opens stops its own press first. */}
+      <div id="site-menu" className={open ? styles.open : styles.panel} onClick={() => setOpen(false)}>
         {children}
       </div>
     </div>

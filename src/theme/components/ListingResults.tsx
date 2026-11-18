@@ -13,9 +13,7 @@ export const ListingResults = ({ listing }: { listing: Listing }) => {
       <FilterPanel listing={listing} />
       <div className={styles.results}>
         <h2 className={styles.hiddenHeading}>{t('shop.listing.heading')}</h2>
-        {listing.status === 'ready' ? (
-          <ListingBar listing={listing} />
-        ) : null}
+        {listing.status === 'ready' && (listing.items.length || listing.selected.length) ? <ListingBar listing={listing} /> : null}
         {listing.status === 'loading' ? <GridPlaceholder label={t('shop.listing.loading')} count={6} /> : null}
         {listing.status === 'error' ? (
           <Notice title={t('shop.listing.failed')} lead={t('shop.listing.failedLead')}>
@@ -29,7 +27,7 @@ export const ListingResults = ({ listing }: { listing: Listing }) => {
             </Notice>
           ) : (
             <Notice title={t('shop.collection.empty')} lead={t('shop.collection.emptyLead')}>
-              <Link href="/" className={styles.secondary}>
+              <Link href="/collections/all/" className={styles.secondary}>
                 {t('shop.collection.home')}
               </Link>
             </Notice>

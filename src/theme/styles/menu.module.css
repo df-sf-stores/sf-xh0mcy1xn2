@@ -4,21 +4,19 @@
 
 .toggle {
   display: inline-flex;
-  min-width: 44px;
+  width: 40px;
   height: 44px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 0;
   border: 0;
-  border-radius: 999px;
   background: transparent;
   color: inherit;
   cursor: pointer;
-  order: 2;
 }
 
 .toggle:focus-visible {
-  outline: 2px solid currentcolor;
+  outline: 2px solid #d71e2b;
   outline-offset: 2px;
 }
 
@@ -28,7 +26,7 @@
   fill: none;
   stroke: currentcolor;
   stroke-linecap: round;
-  stroke-width: 1.6;
+  stroke-width: 1.5;
 }
 
 .label {
@@ -44,21 +42,23 @@
   display: none;
 }
 
+/* Under the sticky header, the full width of the screen, scrolling on its own when it's taller than the screen. */
 .open {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
   display: block;
-  flex-basis: 100%;
-  order: 3;
+  overflow-y: auto;
+  max-height: calc(100vh - 61px);
+  border-bottom: 1px solid #e6e6e6;
+  background: #fff;
 }
 
-@media (min-width: 900px) {
-  .toggle {
-    display: none;
-  }
-
+@media (min-width: 1024px) {
+  .toggle,
   .panel,
   .open {
-    display: block;
-    flex-basis: auto;
-    order: 0;
+    display: none;
   }
 }

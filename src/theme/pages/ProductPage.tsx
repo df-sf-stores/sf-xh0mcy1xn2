@@ -1,4 +1,4 @@
-import { Breadcrumbs, LegalNotices, Link, Price, ProductStory, RichText, SizeChart, useProduct, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { Breadcrumbs, LegalNotices, Link, Price, ProductStory, RichText, SizeChart, useProduct, useProducts, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { BuyButtons } from '../components/interactive/BuyButtons'
 import { Gallery } from '../components/interactive/Gallery'
 import { Options } from '../components/interactive/Options'
@@ -14,6 +14,8 @@ export const ProductPage = () => {
   const { store, locale, t } = useStorefront()
   const page = useProduct()
   const product = page.product
+  // Related products are the merchant's choice; without any, the shop's other products stand in.
+  const others = useProducts({ sort: 'newest', first: 8 })
   if (page.status === 'missing' || page.status === 'error' || !product) {
     return (
       <Layout>
@@ -41,6 +43,7 @@ export const ProductPage = () => {
     )
   }
   const firstMissing = page.missing[0]
+  const related = (product.related.length ? product.related : others.products.filter((p) => p.id !== product.id)).slice(0, 4)
   const specs = product.specs.filter((s) => s.versionId === null || s.versionId === page.version?.id)
   return (
     <Layout>
@@ -50,6 +53,7 @@ export const ProductPage = () => {
           <Gallery photos={page.photos} video={product.video} name={product.name} />
           <div className={styles.info}>
             {product.badges[0] ? <span className={styles.badge}>{product.badges[0].label}</span> : null}
+            <p className={styles.eyebrow}>{t('shop.product.eyebrow')}</p>
             <h1 className={styles.title}>{product.name}</h1>
             {page.price ? (
               <p className={styles.price}>
@@ -121,10 +125,10 @@ export const ProductPage = () => {
           </div>
         </div>
         <ProductStory product={product} versionId={page.version?.id ?? null} className={story.aplus} classes={story} />
-        {product.related.length ? (
+        {related.length ? (
           <section className={styles.related}>
             <h2 className={shop.heading}>{t('shop.product.related')}</h2>
-            <ProductGrid products={product.related.slice(0, 4)} wide />
+            <ProductGrid products={related} wide />
           </section>
         ) : null}
       </section>

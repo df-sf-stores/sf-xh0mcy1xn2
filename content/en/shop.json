@@ -34,15 +34,19 @@
     "retry": "Try again"
   },
   "collection": {
-    "all": "All products",
-    "allLead": "Everything in the shop.",
+    "all": "Shop all",
+    "allLead": "Every object in the shop: distinctive finds for everyday spaces.",
+    "eyebrow": "Collection",
+    "everything": "The shop",
+    "count": "{count, plural, =0 {No objects yet} one {# object} other {# objects}}",
+    "countMore": "{count}+ objects",
     "loading": "Loading the collection",
     "missing": "We can't find that collection",
     "missingLead": "It may have moved or been taken down.",
     "browse": "Browse all products",
     "empty": "Nothing here yet",
-    "emptyLead": "There are no products to show here yet. Come back soon.",
-    "home": "Go to the home page"
+    "emptyLead": "This collection is still being put together. In the meantime, browse everything in the shop.",
+    "home": "Shop all"
   },
   "search": {
     "title": "Search the shop",
@@ -70,6 +74,9 @@
     "warranty": "Warranty",
     "questions": "Questions",
     "related": "You may also like",
+    "quantity": "Quantity",
+    "details": "Details",
+    "eyebrow": "Object",
     "add": "Add to cart",
     "buyNow": "Buy now",
     "added": "Added to your cart.",

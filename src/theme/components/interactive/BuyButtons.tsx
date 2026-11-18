@@ -5,6 +5,7 @@ import { AddToCart, BuyNow, Link, TextField, useStorefront, type GiftRecipient, 
 import shop from '../../styles/shop.module.css'
 import styles from '../../styles/product.module.css'
 import { WishlistHeart } from './WishlistHeart'
+import { cx } from '../cx'
 
 const emailLike = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -16,6 +17,7 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
   const { t } = useStorefront()
   const [addedId, setAddedId] = useState<string | null>(null)
   const [failed, setFailed] = useState(false)
+  const [quantity, setQuantity] = useState(1)
   const [gift, setGift] = useState<GiftRecipient>({ recipientName: '', recipientEmail: '', sendOn: '', message: '' })
   const version = page.version
   const kind = page.product?.kind
@@ -61,6 +63,23 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
           {t('shop.product.gift.needed')}
         </p>
       ) : null}
+      {isGift ? null : (
+        <div className={styles.quantity} role="group" aria-label={t('shop.product.quantity')}>
+          <button type="button" className={styles.step} aria-label={t('shop.cart.less')} disabled={quantity <= 1} onClick={() => setQuantity(Math.max(1, quantity - 1))}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 12h12" />
+            </svg>
+          </button>
+          <span className={styles.quantityValue} aria-live="polite">
+            {quantity}
+          </span>
+          <button type="button" className={styles.step} aria-label={t('shop.cart.more')} disabled={quantity >= 20} onClick={() => setQuantity(Math.min(20, quantity + 1))}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 12h12M12 6v12" />
+            </svg>
+          </button>
+        </div>
+      )}
       {inCart ? (
         <Link href="/cart/" className={shop.primary} ref={goToCart}>
           {t('shop.product.goToCart')}
@@ -68,6 +87,7 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
       ) : (
         <AddToCart
           versionId={version?.id ?? null}
+          quantity={isGift ? 1 : quantity}
           disabled={!buyable}
           gift={isGift ? gift : null}
           describedBy={waitsForRecipient ? why : undefined}
@@ -83,7 +103,7 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
         </AddToCart>
       )}
       {isGift ? null : (
-        <BuyNow versionId={version?.id ?? null} disabled={!buyable} className={shop.secondary} onDone={(bought) => setFailed(!bought)}>
+        <BuyNow versionId={version?.id ?? null} quantity={quantity} disabled={!buyable} className={cx(shop.secondary, styles.buyNow)} onDone={(bought) => setFailed(!bought)}>
           {t('shop.product.buyNow')}
         </BuyNow>
       )}

@@ -1,31 +1,35 @@
 import { Image, Link, Price, useStorefront, type ProductCard as Card } from '@dripfunnel/storefront-core/theme'
+import { WishlistHeart } from './interactive/WishlistHeart'
 import styles from '../styles/shop.module.css'
 
+/** A product as the shop lists it: a large picture with the wishlist heart over it, then its name, price and a way in. */
 export const ProductCard = ({ product }: { product: Card }) => {
   const { store, locale, t } = useStorefront()
   return (
     <article className={styles.card}>
-      <Link href={product.href} className={styles.cardLink}>
-        <div className={styles.cardPicture}>
-          {product.photo ? <Image image={product.photo} alt={product.photo.alt ?? product.name} ratio={0.8} sizes="(min-width: 900px) 25vw, 50vw" className={styles.cardImage} /> : <span className={styles.noPicture}>{t('shop.card.noPicture')}</span>}
-          {product.badges[0] ? <span className={styles.badge}>{product.badges[0].label}</span> : null}
-          {product.stock.inStock ? null : <span className={styles.soldOut}>{t('shop.card.soldOut')}</span>}
+      <div className={styles.cardPicture}>
+        <Link href={product.href} className={styles.cardImageLink}>
+          {product.photo ? <Image image={product.photo} alt={product.photo.alt ?? product.name} ratio={0.8} sizes="(min-width: 1024px) 25vw, 50vw" className={styles.cardImage} /> : <span className={styles.noPicture}>{t('shop.card.noPicture')}</span>}
+        </Link>
+        {product.badges[0] ? <span className={styles.badge}>{product.badges[0].label}</span> : null}
+        {product.stock.inStock ? null : <span className={styles.soldOut}>{t('shop.card.soldOut')}</span>}
+        <div className={styles.cardWish}>
+          <WishlistHeart productId={product.id} name={product.name} versionId={null} onCard />
         </div>
-        <h3 className={styles.cardName}>{product.name}</h3>
-      </Link>
-      <span className={styles.cardRule} aria-hidden="true" />
-      {product.price ? (
-        <p className={styles.cardPrice}>
-          {product.from ? <span className={styles.from}>{t('shop.card.from')}</span> : null}
-          <Price money={product.price} compareAt={product.compareAt} includesTax={store.pricesIncludeTax} locale={locale} t={t} className={styles.price} />
-        </p>
-      ) : null}
-      <Link href={product.href} className={styles.cardMore}>
-        {t('shop.card.view')}
-        <svg className={styles.cardMoreIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      </Link>
+      </div>
+      <div className={styles.cardBody}>
+        <h3 className={styles.cardName}>
+          <Link href={product.href} className={styles.cardLink}>
+            {product.name}
+          </Link>
+        </h3>
+        {product.price ? (
+          <p className={styles.cardPrice}>
+            {product.from ? <span className={styles.from}>{t('shop.card.from')}</span> : null}
+            <Price money={product.price} compareAt={product.compareAt} includesTax={store.pricesIncludeTax} locale={locale} t={t} className={styles.price} />
+          </p>
+        ) : null}
+      </div>
     </article>
   )
 }

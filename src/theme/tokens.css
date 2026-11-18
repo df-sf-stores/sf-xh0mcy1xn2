@@ -1,12 +1,12 @@
 :root {
-  --color-brand: #111827;
-  --color-surface: #ffffff;
-  --color-text: #111827;
-  --font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-brand: #111;
+  --color-surface: #fff;
+  --color-text: #111;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
+/* The browser's 8px body margin stays: the theme's .shell cancels exactly that (layout.module.css). */
 body {
-  margin: 0;
   background: var(--color-surface);
   color: var(--color-text);
   font-family: var(--font-body);
