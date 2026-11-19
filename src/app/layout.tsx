@@ -10,8 +10,10 @@ export const metadata = { title: theme.name }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
+    // Browser extensions (Grammarly, password managers) add attributes to <html> and <body> before React hydrates. Without
+    // suppressHydrationWarning, next dev records that as a runtime error and reloads the page on its next HMR update, in a loop.
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Shell content={readContent()} media={themeMedia()}>
           {children}
         </Shell>

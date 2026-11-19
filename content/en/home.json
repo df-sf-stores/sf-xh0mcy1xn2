@@ -6,36 +6,17 @@
     "accent": "noticing.",
     "lead": "Distinctive finds for everyday spaces.",
     "shopAll": "Shop all",
-    "mirrors": "Explore mirrors",
-    "pictures": "Featured objects"
+    "collections": "Explore collections",
+    "pictures": "Featured objects",
+    "index": "Featured {number}"
   },
   "intro": {
-    "eyebrow": "{store}",
-    "title": "Distinctive objects.",
-    "accent": "Unexpected character.",
-    "body": "Discover distinctive finds selected for people who like things a little differently.",
+    "supporting": "Distinctive finds selected for people who like things a little differently.",
+    "body": "Handcrafted mirrors, cement keepsakes, a chessboard that holds your keys and a stop sign that won't. Every object here is chosen because it changes how a room feels, and because you won't find it everywhere else.",
     "action": "Shop all"
   },
-  "collections": {
-    "eyebrow": "Browse",
-    "title": "Our collections",
-    "explore": "Explore",
-    "count": "{count, plural, =0 {Coming soon} one {# object} other {# objects}}"
-  },
-  "mirrors": {
-    "eyebrow": "{store}",
-    "title": "Our mirrors",
-    "lead": "Real handcrafted convex glass. Every curve is intentional, every reflection a little unexpected.",
-    "view": "View product"
-  },
-  "featured": {
-    "eyebrow": "Selected",
-    "title": "Featured objects",
-    "viewAll": "View all",
-    "empty": "New objects are on their way. Check back soon."
-  },
   "story": {
-    "eyebrow": "Stories",
+    "eyebrow": "Featured objects",
     "title": "Everyday objects.",
     "accent": "Extraordinary character.",
     "view": "View product",
@@ -44,8 +25,10 @@
     "stop": "Crafted from an original stop sign in aluminium. A limited-edition piece that reflects light and attitude in equal measure."
   },
   "look": {
+    "eyebrow": "Gallery",
     "title": "Shop the look",
     "instagram": "Instagram",
-    "view": "View {name}"
+    "view": "View {name}",
+    "shop": "Shop"
   }
 }
